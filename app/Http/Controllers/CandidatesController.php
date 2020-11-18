@@ -100,11 +100,14 @@ class CandidatesController extends Controller
             'faculty' => 'required',
             'manifesto' => 'required',
             'cgpa' => 'required',
-            'name' => 'required',
-            'image' => 'image|nullable|max:1999'
+            'name' => 'required'
         ]);
 
         $candidate = Candidate::find($id);
+        $candidate-> faculty = $request->input('faculty');
+        $candidate-> manifesto = $request->input('manifesto');
+        $candidate-> cgpa = $request->input('cgpa');
+        $candidate-> name = $request->input('name');
         $candidate->save();
 
         return redirect('/candidates')->with('success', 'Candidate Updated');

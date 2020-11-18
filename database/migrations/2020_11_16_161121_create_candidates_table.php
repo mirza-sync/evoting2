@@ -19,7 +19,6 @@ class CreateCandidatesTable extends Migration
             $table->string('faculty');
             $table->float('cgpa');
             $table->string('manifesto');
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
