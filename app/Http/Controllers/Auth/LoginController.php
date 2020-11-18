@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Auth;
+use App\Mail\OTPMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,7 +42,32 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    protected function loggedOut(Request $request) {
-        return redirect('/login');
+    protected function attemptLogin(Request $request)
+    {
+        $result = $this->guard()->attempt(
+            $this->credentials($request), 
+            $request->filled('remember')
+        );
+
+        if ($result) {
+            
+            auth()->user()->sendOTP(request('via'));
+        }
+        return $result;
+    }
+
+    // protected function loggedOut(Request $request) {
+    //     return redirect('/login');
+    // }
+    public function logout(Request $request)
+    {
+        auth()->user()->update(['isVerified' => 0]);
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
+
+        // Auth::guard('admin')->logout();
+        // return redirect()->intended('/');
     }
 }

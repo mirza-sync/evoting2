@@ -15,15 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/verifyOTP','VerifyOTPController@showVerifyForm');
+Route::post('/verifyOTP','VerifyOTPController@verify');
+Route::post('/resend_otp','ResendOTPController@resend');
+
 Route::get('/students/generate', 'UsersController@generateFakeStudents');
 Route::get('/candidates/generate', 'CandidatesController@generateCandidates');
 
 Route::get('/students/dashboard', 'UsersController@dashboard');
-
-// Route::group({'middleware' => 'TwoFA'}) {
-//     Route::get('/home', 'HomeController@index')->name('home');
-// }
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/login', 'Auth\AdminLoginController@showAdminLoginForm');
 Route::post('/admin/login', 'Auth\AdminLoginController@adminLogin');
@@ -39,6 +38,11 @@ Route::get('/votes/generate', 'VotesController@generateRandomVotes');
 Route::get('/votes', 'VotesController@index');
 
 Route::resource('candidates', 'CandidatesController');
-Route::resource('students', 'UsersController');
+
+Route::group(['middleware' => 'TwoFA' ] , function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('students', 'UsersController');
+    Route::get('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
+});
 
 Auth::routes();
