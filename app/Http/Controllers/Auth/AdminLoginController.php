@@ -61,13 +61,13 @@ class AdminLoginController extends Controller
         //Attempt to log the user in
         if(Auth::guard('admin')->attempt(['id'=> $request->id, 'password'=> $request->password], false)) {
             //If successful, then redirect to their intended location
-            return redirect()->intended(route('admin.home'));
+            return redirect('/admin/home');
         }
         //If unsuccesstul, then redirect back to the login with the form data
         return redirect()->back();
     }
 
     protected function loggedOut(Request $request) {
-        return redirect('/login');
+        return redirect()->route('/logout');
     }
 }

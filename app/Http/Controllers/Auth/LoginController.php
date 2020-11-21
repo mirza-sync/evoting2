@@ -63,11 +63,12 @@ class LoginController extends Controller
     {
         if(Auth::guard('web')->check()){
             auth()->user()->update(['isVerified' => 0]);
+            Auth::guard('web')->logout();
         }
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
 
-        return $this->loggedOut($request) ?: redirect('/');
+        return redirect('/');
 
         // Auth::guard('admin')->logout();
         // return redirect()->intended('/');
