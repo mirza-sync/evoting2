@@ -61,7 +61,9 @@ class LoginController extends Controller
     // }
     public function logout(Request $request)
     {
-        auth()->user()->update(['isVerified' => 0]);
+        if(Auth::guard('web')->check()){
+            auth()->user()->update(['isVerified' => 0]);
+        }
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
 

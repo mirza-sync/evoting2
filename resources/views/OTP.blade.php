@@ -1,10 +1,10 @@
 @component('mail::message')
-# Introduction
+# UiTM OTP vote.
 
-The body of your message.
+Your OTP is {{$OTP}}. Don't share this code with others.
 
 @component('mail::button', ['url' => ''])
-Button Text
+Open
 @endcomponent
 
 Thanks,<br>
