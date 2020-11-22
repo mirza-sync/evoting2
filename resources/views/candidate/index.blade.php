@@ -10,7 +10,6 @@
                 <thead class="thead-dark">
                     <tr>
                         <td style="width: 5%">ID</td>
-                        <td>Image</td>
                         <td>Name</td>
                         <td>CGPA</td>
                         <td>Faculty</td>

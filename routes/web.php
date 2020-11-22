@@ -38,11 +38,11 @@ Route::get('/votes/generate', 'VotesController@generateRandomVotes');
 Route::get('/votes', 'VotesController@index');
 
 Route::resource('candidates', 'CandidatesController');
+Route::resource('students', 'UsersController');
 
 Route::group(['middleware' => 'TwoFA' ] , function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::resource('students', 'UsersController');
-    Route::get('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
+    // Route::get('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
 });
 
 Auth::routes();
