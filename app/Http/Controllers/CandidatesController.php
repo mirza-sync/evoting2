@@ -49,10 +49,10 @@ class CandidatesController extends Controller
 
         //create 
         $candidate = new Candidate;
+        $candidate-> name = $request->input('name');
         $candidate-> faculty = $request->input('faculty');
         $candidate-> manifesto = $request->input('manifesto');
         $candidate-> cgpa = $request->input('cgpa');
-        $candidate-> name = $request->input('name');
         $candidate->save();
 
         return redirect('/candidates')->with('success','Candidate Created');
@@ -104,10 +104,10 @@ class CandidatesController extends Controller
         ]);
 
         $candidate = Candidate::find($id);
+        $candidate-> name = $request->input('name');
         $candidate-> faculty = $request->input('faculty');
         $candidate-> manifesto = $request->input('manifesto');
         $candidate-> cgpa = $request->input('cgpa');
-        $candidate-> name = $request->input('name');
         $candidate->save();
 
         return redirect('/candidates')->with('success', 'Candidate Updated');
