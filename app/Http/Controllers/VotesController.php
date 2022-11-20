@@ -35,11 +35,14 @@ class VotesController extends Controller
     }
 
     public function generateRandomVotes() {
-        $rnd = mt_rand(80, 100)/100; // Get random value between 0.80 - 1.00
+        // Get random value between 0.80 - 1.00,
+        // to get random percentage (To simulate that between 80% and 100% of students voted)
+        $rnd = mt_rand(80, 100)/100;
         $studentCount = User::count();
-        $num_voted = round((float)$studentCount * $rnd); // Get percentages of students
+        // Get number of students who voted based on percentage
+        $num_voted = round((float)$studentCount * $rnd);
 
-        // Get random students based on $num_voted, except Ali
+        // Get random students based on $num_voted, except student with id = 1
         $students = User::where('id','>',1)->get()->random($num_voted);
 
         // Get array id of candidates that are the same faculty with each student
@@ -49,7 +52,8 @@ class VotesController extends Controller
 
             // Shuffle array
             shuffle($candidatesIDs);
-            // Take the first two value in array
+            // Take the first two value in array,
+            // to simulate that this student voted 2 candidates
             $votedIDs = array_slice($candidatesIDs, 0, 2);
             // Save voted id to votes bridge
             $student->votesMany()->sync($votedIDs);
