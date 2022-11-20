@@ -32,3 +32,7 @@ Admin can see the top 4 candidates with the highest votes.
 ## Tech Stack
 
 This project is made using Laravel 5.7, Bootstrap 4 and MySQL database.
+
+## Reference
+
+Laravel OTP Login: https://www.youtube.com/playlist?list=PLe30vg_FG4OQML6zWJZajy0kydyPHC9Ke
