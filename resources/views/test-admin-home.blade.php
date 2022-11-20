@@ -22,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="card shadow">
                         <div class="card-body mx-4">
-                            <h2 class="card-title text-center">FSKM</h2>
+                            <h2 class="card-title text-center">Faculty: FSKM</h2>
                             <div class="d-flex flex-row justify-content-between">
                                 <div>
                                     <h6 class="card-title text-muted">Total Students</h6>
@@ -39,7 +39,7 @@
                 <div class="col-md-6">
                     <div class="card shadow">
                         <div class="card-body mx-4">
-                            <h2 class="card-title text-center">FPA</h2>
+                            <h2 class="card-title text-center">Faculty: FPA</h2>
                             <div class="d-flex flex-row justify-content-between">
                                 <div>
                                     <h6 class="card-title text-muted">Total Students</h6>
